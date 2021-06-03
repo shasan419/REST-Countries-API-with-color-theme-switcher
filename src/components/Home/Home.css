@@ -1,0 +1,22 @@
+.main-dark {
+  background: hsl(207, 26%, 17%);
+  width: 100%;
+  margin: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.main-light {
+  background: hsl(0, 0%, 98%);
+  width: 100%;
+  margin: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+.main-dark {
+  background: hsl(207, 26%, 17%);
+  width: 100%;
+  margin: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,47 @@
+.division {
+  margin-top: 24px;
+}
+.tags {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tag-light {
+  font-size: 14px;
+  font-family: "NunitoSans";
+  font-weight: 800;
+  color: var(--light-text);
+}
+
+.data-light {
+  font-size: 14px;
+  font-family: "NunitoSans";
+  font-weight: 300;
+  color: var(--light-text);
+}
+
+.tag-dark {
+  font-size: 14px;
+  font-family: "NunitoSans";
+  font-weight: 800;
+  color: hsl(0, 0%, 100%);
+}
+
+.data-dark {
+  font-size: 14px;
+  font-family: "NunitoSans";
+  font-weight: 300;
+  color: hsl(0, 0%, 100%);
+}
+
+h2,
+p {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+.link {
+  text-decoration: none;
+}

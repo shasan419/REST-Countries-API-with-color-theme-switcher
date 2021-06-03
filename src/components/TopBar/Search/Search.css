@@ -1,0 +1,64 @@
+.search-light {
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  max-width: 350px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  margin: 20px auto;
+}
+
+.search-light > input {
+  border: none;
+  outline: none;
+  background: hsl(0, 0%, 100%);
+  color: var(--light-text);
+  font-size: 14px;
+  font-family: "NunitoSans";
+  width: 100%;
+}
+
+.search-dark {
+  background: hsl(209, 23%, 22%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  max-width: 350px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  margin: 20px auto;
+}
+
+.search-dark > input {
+  border: none;
+  outline: none;
+  background: hsl(209, 23%, 22%);
+  color: hsl(0, 0%, 100%);
+  font-size: 14px;
+  font-family: "NunitoSans";
+  width: 100%;
+}
+
+.search-light > input::placeholder {
+  color: var(--light-text);
+  font-size: 14px;
+  font-family: "NunitoSans";
+}
+
+.search-dark > input::placeholder {
+  color: hsl(0, 0%, 100%);
+  font-size: 14px;
+  font-family: "NunitoSans";
+}
+
+@media screen and (max-width: 500px) {
+  .search-light {
+    width: 272px;
+  }
+  .search-dark {
+    width: 272px;
+  }
+}

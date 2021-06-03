@@ -1,0 +1,106 @@
+.main-light {
+  background: hsl(0, 0%, 98%);
+  width: 100%;
+  margin: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+.main-dark {
+  background: hsl(207, 26%, 17%);
+  width: 100%;
+  margin: auto;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 700px) {
+  .container {
+    padding: 30px;
+  }
+}
+
+.btn-light {
+  display: flex;
+  background-color: var(--light-ele);
+  padding: 5px 30px;
+  text-decoration: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  color: var(--light-text);
+  border-radius: 5px;
+  transition: 0.2s var(--light-ele);
+}
+.btn-light:hover {
+  background-color: var(--light-bg);
+}
+
+.btn-dark {
+  display: flex;
+  background-color: var(--dark-ele);
+  padding: 5px 30px;
+  text-decoration: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  color: var(--dark-text);
+  border-radius: 5px;
+  transition: 0.2s var(--dark-ele);
+}
+
+.btn-dark:hover {
+  background-color: var(--dark-bg);
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.Link {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  margin: 15px 15px 0px 0px;
+  text-decoration: none;
+}
+
+.MuiButton-text {
+  padding: 0;
+}
+
+.p-light {
+  color: var(--light-text);
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.p-dark {
+  color: var(--dark-text);
+  font-size: 25px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.span-light {
+  color: var(--light-text);
+  font-weight: 600;
+}
+
+.span-dark {
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
+.boder {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.text-light {
+  color: var(--light-text);
+}
+
+.text-dark {
+  color: var(--dark-text);
+}

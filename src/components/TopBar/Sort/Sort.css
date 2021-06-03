@@ -1,0 +1,59 @@
+.sort-drop-light {
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  color: var(--light-text) !important;
+  font-size: 14px !important;
+  font-family: "NunitoSans" !important;
+}
+
+.sort-drop-dark {
+  background: hsl(209, 23%, 22%);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  color: hsl(0, 0%, 100%) !important;
+  font-size: 14px !important;
+  font-family: "NunitoSans" !important;
+}
+
+.MuiFormControl-root {
+  max-width: 220px !important;
+}
+
+.MuiInputBase-root {
+  color: unset !important;
+  font-size: 14px !important;
+  font-family: "NunitoSans" !important;
+  font-weight: normal !important;
+  line-height: unset !important;
+  letter-spacing: unset !important;
+  width: 100% !important;
+}
+
+.MuiSelect-icon {
+  color: unset !important;
+}
+
+.MuiFormControl-root {
+  padding: 4px !important;
+}
+
+.MuiMenuItem-root {
+  font-size: 14px !important;
+  font-family: "NunitoSans" !important;
+  font-weight: normal !important;
+}
