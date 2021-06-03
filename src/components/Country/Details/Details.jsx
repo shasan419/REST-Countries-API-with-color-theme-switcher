@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-// import { Link } from "react-router-dom";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Details.css";
+import Content from "./Content/Content";
 
 const DetailsContainer = styled.div`
   display: grid;
@@ -37,9 +37,7 @@ const Img = styled.img`
 `;
 
 const Details = (props) => {
-  const history = useHistory();
-  const location = useLocation();
-  const { theme, country, borders } = props;
+  const { theme, country, borders, onChange } = props;
   return (
     <DetailsContainer>
       <Img
@@ -53,57 +51,53 @@ const Details = (props) => {
         </h1>
         <Info>
           <div style={{ marginBottom: "30px" }}>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Native Name:{" "}
-              </span>
-              {country.nativeName}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Population:{" "}
-              </span>
-              {country.population.toLocaleString()}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Region:
-              </span>{" "}
-              {country.region}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Sub Region:
-              </span>{" "}
-              {country.subregion}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Capital:
-              </span>{" "}
-              {country.capital}
-            </p>
+            <Content
+              theme={theme}
+              spanText={"Native Name:"}
+              pText={country.nativeName}
+            />
+            <Content
+              theme={theme}
+              spanText={"Population:"}
+              pText={country.population.toLocaleString()}
+            />
+            <Content
+              theme={theme}
+              spanText={"Region:"}
+              pText={country.region}
+            />
+            <Content
+              theme={theme}
+              spanText={"Sub Region:"}
+              pText={country.subregion}
+            />
+            <Content
+              theme={theme}
+              spanText={"Capital:"}
+              pText={country.capital}
+            />
           </div>
 
           <div>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Top Level Domain:{" "}
-              </span>
-              {country.topLevelDomain}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Currencies:{" "}
-              </span>
-              {country.currencies.map((currency) => currency.name).join(", ")}
-            </p>
-            <p className={theme === "light" ? "text-light" : "text-dark"}>
-              <span className={theme === "light" ? "span-light" : "span-dark"}>
-                Languages:{" "}
-              </span>
-              {country.languages.map((language) => language.name).join(", ")}
-            </p>
+            <Content
+              theme={theme}
+              spanText={"Top Level Domain:"}
+              pText={country.topLevelDomain}
+            />
+            <Content
+              theme={theme}
+              spanText={"Currencies:"}
+              pText={country.currencies
+                .map((currency) => currency.name)
+                .join(", ")}
+            />
+            <Content
+              theme={theme}
+              spanText={"Languages:"}
+              pText={country.languages
+                .map((language) => language.name)
+                .join(", ")}
+            />
           </div>
         </Info>
         {borders.length !== 0 && (
@@ -112,22 +106,19 @@ const Details = (props) => {
               Border Countries:{" "}
             </span>
             {borders.map((border) => (
-              <div
+              <Link
                 key={border.name}
-                // to={{
-                //   pathname: `/${border.name}`,
-                //   state: { th: theme },
-                // }}
-                onClick={() => {
-                  location.state = { th: theme };
-                  history.replace(`/${border.name}`);
+                to={{
+                  pathname: `/${border.name}`,
+                  state: { th: theme },
                 }}
+                onClick={() => onChange(border.name)}
                 className={
                   theme === "light" ? "Link btn-light" : "Link btn-dark"
                 }
               >
                 {border.name}
-              </div>
+              </Link>
             ))}
           </div>
         )}

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Nav from "../common/Nav/Nav";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import "./Country.css";
 import Details from "./Details/Details";
 import Loader from "../common/Loader/Loader";
+import { config } from "./../../App";
 
 class Country extends Component {
   state = {
@@ -14,11 +15,10 @@ class Country extends Component {
     loading: true,
   };
 
-  performApiCall = async () => {
+  performApiCall = async (name) => {
     this.setState({ loading: true });
-    const name = this.props.match.params.name;
     const res = await fetch(
-      `https://restcountries.eu/rest/v2/name/${name}?fullText=true&fields=name;population;region;subregion;capital;topLevelDomain;currencies;languages;borders;flag;nativeName;`
+      `${config.endpoint}/name/${name}?fullText=true&fields=name;population;region;subregion;capital;topLevelDomain;currencies;languages;borders;flag;nativeName;`
     )
       .then((res) => res.json())
       .catch((e) => console.log(e));
@@ -28,7 +28,7 @@ class Country extends Component {
     // console.log(country);
     if (country.borders && country.borders.length !== 0) {
       const resBor = await fetch(
-        `https://restcountries.eu/rest/v2/alpha/?codes=${country.borders.join(
+        `${config.endpoint}/alpha/?codes=${country.borders.join(
           ";"
         )}&fields=name;`
       )
@@ -52,12 +52,13 @@ class Country extends Component {
   };
 
   componentDidMount = () => {
-    this.performApiCall();
+    // console.log(this.props.match.params.name);
+    this.performApiCall(this.props.match.params.name);
   };
 
   render() {
     const { theme, borders, country, loading } = this.state;
-    const { handleThemeToggle } = this;
+    const { handleThemeToggle, performApiCall } = this;
     return (
       <div className={theme === "light" ? "main-light" : "main-dark"}>
         <Nav theme={theme} onThemeChange={handleThemeToggle} />
@@ -77,7 +78,12 @@ class Country extends Component {
                 Back
               </div>
             </Link>
-            <Details theme={theme} country={country} borders={borders} />
+            <Details
+              theme={theme}
+              country={country}
+              borders={borders}
+              onChange={performApiCall}
+            />
           </div>
         ) : (
           <Loader
@@ -95,4 +101,4 @@ class Country extends Component {
   }
 }
 
-export default Country;
+export default withRouter(Country);

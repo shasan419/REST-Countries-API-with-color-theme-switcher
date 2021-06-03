@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import Nav from "../common/Nav/Nav";
+import { withRouter } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import "./Home.css";
 import TopBar from "../TopBar/TopBar";
 import Loader from "../common/Loader/Loader";
+import { config } from "./../../App";
 
 class Home extends Component {
   state = {
@@ -17,7 +19,7 @@ class Home extends Component {
   performApiCall = async () => {
     this.setState({ loading: true });
     const data = await fetch(
-      "https://restcountries.eu/rest/v2/all?fields=name;population;region;capital;flag;"
+      `${config.endpoint}/all?fields=name;population;region;capital;flag;`
     )
       .then((res) => res.json())
       .catch((e) => console.log(e));
@@ -28,7 +30,7 @@ class Home extends Component {
 
   componentDidMount = async () => {
     if (this.props.location.state) {
-      this.setState({ theme: this.props.location.state.th });
+      this.handleThemeToggle(this.props.location.state.th);
     }
     this.performApiCall();
   };
@@ -118,4 +120,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(Home);

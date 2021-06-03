@@ -2,6 +2,11 @@ import "./App.css";
 import { Route, Switch } from "react-router";
 import Home from "./components/Home/Home";
 import Country from "./components/Country/Country";
+import urlConfig from "./urlConfig.json";
+
+export const config = {
+  endpoint: `${urlConfig.backendUrl}/v2`,
+};
 
 function App(props) {
   return (
