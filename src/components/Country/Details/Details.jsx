@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import "./Details.css";
 
 const DetailsContainer = styled.div`
@@ -36,6 +37,8 @@ const Img = styled.img`
 `;
 
 const Details = (props) => {
+  const history = useHistory();
+  const location = useLocation();
   const { theme, country, borders } = props;
   return (
     <DetailsContainer>
@@ -109,18 +112,22 @@ const Details = (props) => {
               Border Countries:{" "}
             </span>
             {borders.map((border) => (
-              <Link
+              <div
                 key={border.name}
-                to={{
-                  pathname: `/${border.name}`,
-                  state: { th: theme },
+                // to={{
+                //   pathname: `/${border.name}`,
+                //   state: { th: theme },
+                // }}
+                onClick={() => {
+                  location.state = { th: theme };
+                  history.replace(`/${border.name}`);
                 }}
                 className={
                   theme === "light" ? "Link btn-light" : "Link btn-dark"
                 }
               >
                 {border.name}
-              </Link>
+              </div>
             ))}
           </div>
         )}

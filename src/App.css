@@ -3,12 +3,6 @@
   src: local("NunitoSans"), url("./assets//NunitoSans.ttf") format("truetype");
   font-weight: normal;
 }
-@font-face {
-  font-family: "NunitoSans-Bold";
-  src: local("NunitoSans-Bold"),
-    url("./assets//NunitoSans-Bold.ttf") format("truetype");
-  font-weight: normal;
-}
 
 :root {
   --light-text: hsl(200, 15%, 8%);

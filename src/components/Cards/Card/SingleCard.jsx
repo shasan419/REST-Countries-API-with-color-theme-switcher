@@ -10,7 +10,7 @@ import "./SingleCard.css";
 const useStyles = makeStyles({
   rootLight: {
     maxWidth: 300,
-    boxShadow: "0 0 8px rgba(0,0,0,0.05)",
+    boxShadow: "0 0 8px rgba(0, 0, 0, 0.25)",
     display: "flex",
     flexDirection: "column",
     borderRadius: "5px",
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
   rootDark: {
     maxWidth: 300,
-    boxShadow: "0 0 8px rgba(0,0,0,0.05)",
+    boxShadow: "0 0 8px rgba(0, 0, 0, 0.25)",
     display: "flex",
     flexDirection: "column",
     borderRadius: "5px",

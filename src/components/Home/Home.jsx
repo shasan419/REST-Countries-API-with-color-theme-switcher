@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Nav from "../Nav/Nav";
+import Nav from "../common/Nav/Nav";
 import Cards from "../Cards/Cards";
 import "./Home.css";
 import TopBar from "../TopBar/TopBar";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import Loader from "../common/Loader/Loader";
 
 class Home extends Component {
   state = {
@@ -105,17 +105,13 @@ class Home extends Component {
         {!loading ? (
           <Cards theme={theme} countries={filteredCountries} />
         ) : (
-          <div
+          <Loader
             style={{
               display: "flex",
-              // height: "80vh",
-              // width: "100vw",
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            <CircularProgress disableShrink />
-          </div>
+          />
         )}
       </div>
     );

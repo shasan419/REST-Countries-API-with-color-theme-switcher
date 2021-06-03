@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import Nav from "../Nav/Nav";
+import Nav from "../common/Nav/Nav";
 import { Link } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import "./Country.css";
 import Details from "./Details/Details";
+import Loader from "../common/Loader/Loader";
 
 class Country extends Component {
   state = {
@@ -80,7 +80,7 @@ class Country extends Component {
             <Details theme={theme} country={country} borders={borders} />
           </div>
         ) : (
-          <div
+          <Loader
             style={{
               display: "flex",
               height: "80vh",
@@ -88,9 +88,7 @@ class Country extends Component {
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            <CircularProgress disableShrink />
-          </div>
+          />
         )}
       </div>
     );
