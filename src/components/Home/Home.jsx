@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import Nav from "../common/Nav/Nav";
-import { withRouter } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import "./Home.css";
 import TopBar from "../TopBar/TopBar";
 import Loader from "../common/Loader/Loader";
 import { config } from "./../../App";
+import ThemeContext from "./../../context/themeContext";
 
 class Home extends Component {
+  static contextType = ThemeContext;
   state = {
-    theme: "light",
+    // theme: "light",
     countries: [],
     filteredCountries: [],
     searchText: "",
@@ -29,21 +30,7 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
-    if (this.props.location.state) {
-      this.handleThemeToggle(this.props.location.state.th);
-    }
     this.performApiCall();
-  };
-
-  handleThemeToggle = (val) => {
-    let root = document.getElementsByTagName("body");
-    if (val === "light") {
-      root[0].setAttribute("style", "background:hsl(0, 0%, 98%);");
-    } else {
-      root[0].setAttribute("style", "background:hsl(207, 26%, 17%)");
-    }
-
-    this.setState({ theme: val });
   };
 
   debounceSearch = (val) => {
@@ -93,31 +80,42 @@ class Home extends Component {
   };
 
   render() {
-    const { theme, filteredCountries, loading } = this.state;
-    const { handleThemeToggle, debounceSearch, handleSortByRegion } = this;
+    const { filteredCountries, loading } = this.state;
+    const { debounceSearch, handleSortByRegion } = this;
 
     return (
-      <div className={theme === "light" ? "main-light" : "main-dark"}>
-        <Nav theme={theme} onThemeChange={handleThemeToggle} />
-        <TopBar
-          theme={theme}
-          onSearch={debounceSearch}
-          onSort={handleSortByRegion}
-        />
-        {!loading ? (
-          <Cards theme={theme} countries={filteredCountries} />
-        ) : (
-          <Loader
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          />
+      <ThemeContext.Consumer>
+        {(themeContext) => (
+          <div
+            className={
+              themeContext.theme === "light" ? "main-light" : "main-dark"
+            }
+          >
+            <Nav
+              theme={themeContext.theme}
+              onThemeChange={themeContext.onThemeChange}
+            />
+            <TopBar
+              theme={themeContext.theme}
+              onSearch={debounceSearch}
+              onSort={handleSortByRegion}
+            />
+            {!loading ? (
+              <Cards theme={themeContext.theme} countries={filteredCountries} />
+            ) : (
+              <Loader
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              />
+            )}
+          </div>
         )}
-      </div>
+      </ThemeContext.Consumer>
     );
   }
 }
 
-export default withRouter(Home);
+export default Home;

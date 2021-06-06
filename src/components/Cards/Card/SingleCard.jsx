@@ -36,10 +36,7 @@ const useStyles = makeStyles({
 const SingleCard = ({ theme, country }) => {
   const classes = useStyles();
   return (
-    <Link
-      to={{ pathname: `/${country.name}`, state: { th: theme } }}
-      className="link"
-    >
+    <Link to={{ pathname: `/${country.name}` }} className="link">
       <Card
         className={theme === "light" ? classes.rootLight : classes.rootDark}
       >

@@ -9,7 +9,7 @@ const Nav = (props) => {
   return (
     <div className="content">
       <div className={theme === "dark" ? "nav-items-dark" : "nav-items-light"}>
-        <Link to={{ pathname: "/", state: { th: theme } }} className="Logo">
+        <Link to={{ pathname: "/" }} className="Logo">
           <h1
             className={theme === "dark" ? "logo-text-dark" : "logo-text-light"}
           >

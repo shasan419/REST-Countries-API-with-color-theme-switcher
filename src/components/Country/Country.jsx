@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Nav from "../common/Nav/Nav";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import "./Country.css";
 import Details from "./Details/Details";
 import Loader from "../common/Loader/Loader";
 import { config } from "./../../App";
+import ThemeContext from "../../context/themeContext";
 
 class Country extends Component {
   state = {
-    theme: this.props.location.state.th,
     country: [],
     borders: [],
     loading: true,
@@ -40,65 +40,69 @@ class Country extends Component {
     this.setState({ loading: false });
   };
 
-  handleThemeToggle = (val) => {
-    let root = document.getElementsByTagName("body");
-    if (val === "light") {
-      root[0].setAttribute("style", "background:hsl(0, 0%, 98%);");
-    } else {
-      root[0].setAttribute("style", "background:hsl(207, 26%, 17%)");
-    }
-
-    this.setState({ theme: val });
-  };
-
   componentDidMount = () => {
     // console.log(this.props.match.params.name);
     this.performApiCall(this.props.match.params.name);
   };
 
   render() {
-    const { theme, borders, country, loading } = this.state;
-    const { handleThemeToggle, performApiCall } = this;
+    const { borders, country, loading } = this.state;
+    const { performApiCall } = this;
     return (
-      <div className={theme === "light" ? "main-light" : "main-dark"}>
-        <Nav theme={theme} onThemeChange={handleThemeToggle} />
-        {!loading ? (
-          <div className="container">
-            <Link to={{ pathname: "/", state: { th: theme } }} className="Link">
-              {" "}
-              <div className={theme === "light" ? "btn-light" : "btn-dark"}>
-                <KeyboardBackspaceIcon
-                  style={{
-                    color:
-                      theme === "light"
-                        ? "var(--light-text)"
-                        : "var(--dark-text)",
-                  }}
-                />
-                Back
-              </div>
-            </Link>
-            <Details
-              theme={theme}
-              country={country}
-              borders={borders}
-              onChange={performApiCall}
+      <ThemeContext.Consumer>
+        {(themeContext) => (
+          <div
+            className={
+              themeContext.theme === "light" ? "main-light" : "main-dark"
+            }
+          >
+            <Nav
+              theme={themeContext.theme}
+              onThemeChange={themeContext.onThemeChange}
             />
+            {!loading ? (
+              <div className="container">
+                <Link to={{ pathname: "/" }} className="Link">
+                  {" "}
+                  <div
+                    className={
+                      themeContext.theme === "light" ? "btn-light" : "btn-dark"
+                    }
+                  >
+                    <KeyboardBackspaceIcon
+                      style={{
+                        color:
+                          themeContext.theme === "light"
+                            ? "var(--light-text)"
+                            : "var(--dark-text)",
+                      }}
+                    />
+                    Back
+                  </div>
+                </Link>
+                <Details
+                  theme={themeContext.theme}
+                  country={country}
+                  borders={borders}
+                  onChange={performApiCall}
+                />
+              </div>
+            ) : (
+              <Loader
+                style={{
+                  display: "flex",
+                  height: "80vh",
+                  width: "100vw",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              />
+            )}
           </div>
-        ) : (
-          <Loader
-            style={{
-              display: "flex",
-              height: "80vh",
-              width: "100vw",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          />
         )}
-      </div>
+      </ThemeContext.Consumer>
     );
   }
 }
 
-export default withRouter(Country);
+export default Country;
