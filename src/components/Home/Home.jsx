@@ -52,6 +52,7 @@ class Home extends Component {
         if (item.name.toLowerCase().includes(text.toLowerCase())) {
           return item;
         }
+        return false
       });
       this.setState({
         filteredCountries: items,
@@ -69,6 +70,7 @@ class Home extends Component {
         if (item.region.toLowerCase().includes(val.toLowerCase())) {
           return item;
         }
+        return false
       });
       this.setState({
         filteredCountries: items,
