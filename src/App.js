@@ -7,7 +7,7 @@ import urlConfig from "./urlConfig.json";
 import ThemeContext from "./context/themeContext";
 
 export const config = {
-  endpoint: `${urlConfig.backendUrl}/v2`,
+  endpoint: `${urlConfig.backendUrl}`,
 };
 
 class App extends Component {

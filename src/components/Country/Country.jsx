@@ -18,7 +18,7 @@ class Country extends Component {
   performApiCall = async (name) => {
     this.setState({ loading: true });
     const res = await fetch(
-      `${config.endpoint}/name/${name}?fullText=true&fields=name;population;region;subregion;capital;topLevelDomain;currencies;languages;borders;flag;nativeName;`
+      `${config.endpoint}/name/${name}?fullText=true&fields=name,population,region,subregion,capital,topLevelDomain,currencies,languages,borders,flag,nativeName`
     )
       .then((res) => res.json())
       .catch((e) => console.log(e));
@@ -30,7 +30,7 @@ class Country extends Component {
       const resBor = await fetch(
         `${config.endpoint}/alpha/?codes=${country.borders.join(
           ";"
-        )}&fields=name;`
+        )}&fields=name`
       )
         .then((res) => res.json())
         .catch((e) => console.log(e));

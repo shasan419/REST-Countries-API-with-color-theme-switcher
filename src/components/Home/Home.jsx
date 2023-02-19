@@ -20,11 +20,11 @@ class Home extends Component {
   performApiCall = async () => {
     this.setState({ loading: true });
     const data = await fetch(
-      `${config.endpoint}/all?fields=name;population;region;capital;flag;`
+      `${config.endpoint}/all?fields=name,population,region,capital,flag`
     )
       .then((res) => res.json())
       .catch((e) => console.log(e));
-    // console.log(data);
+    console.log(data);
     this.setState({ countries: data, filteredCountries: data });
     this.setState({ loading: false });
   };
